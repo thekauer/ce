@@ -97,6 +97,21 @@ struct Proc {
 		return bw ? true : false;
 	}
 
+	template<typename T>
+	struct LookUp {
+		std::vector<std::vector<T>> results;
+		enum type_{
+			Unknown
+		}type;
+
+		std::vector<T> search_all() {
+			return read_some(0, baseAddress + modSize);
+		}
+
+		LookUp() :type(Unknown){results.push_back(search_all())};
+
+	};
+
 
 };
 
